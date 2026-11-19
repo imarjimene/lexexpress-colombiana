@@ -1,0 +1,1055 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="LexExpress Colombia - Servicios jurídicos digitales para ciudadanos y emprendedores."
+    />
+    <title>LexExpress Colombia | Servicios Jurídicos</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .hero {
+        background: linear-gradient(120deg, #102b46, #214d70);
+      }
+
+      .gold {
+        color: #d6ad60;
+      }
+
+      .btn-primary {
+        background: #d6ad60;
+        color: #102b46;
+        transition: 0.3s;
+      }
+
+      .btn-primary:hover {
+        background: #edca87;
+        transform: translateY(-2px);
+      }
+
+      .section {
+        display: none;
+      }
+
+      .section.active {
+        display: block;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 100;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+      }
+
+      .modal.active {
+        display: flex;
+      }
+
+      .nav-active {
+        color: #d6ad60;
+      }
+
+      .product-card {
+        transition: 0.3s;
+      }
+
+      .product-card:hover {
+        transform: translateY(-6px);
+      }
+
+      input,
+      textarea,
+      select {
+        outline: none;
+      }
+
+      input:focus,
+      textarea:focus,
+      select:focus {
+        border-color: #d6ad60;
+        box-shadow: 0 0 0 2px #f5e8ce;
+      }
+    </style>
+  </head>
+
+  <body class="bg-slate-50 text-slate-800">
+    <!-- ================= NAVEGACIÓN ================= -->
+
+    <header class="fixed top-0 w-full bg-white shadow-md z-50">
+      <nav
+        class="max-w-7xl mx-auto px-5 py-3 flex justify-between items-center"
+      >
+        <a
+          href="#"
+          onclick="mostrarSeccion('inicio')"
+          class="flex items-center gap-3"
+        >
+          <div class="bg-[#173b5e] text-[#d6ad60] p-3 rounded-xl text-xl">
+            <i class="fa-solid fa-scale-balanced"></i>
+          </div>
+
+          <div>
+            <h1 class="text-xl font-extrabold text-[#173b5e]">LexExpress</h1>
+            <p class="text-xs tracking-widest text-gray-500">COLOMBIA</p>
+          </div>
+        </a>
+
+        <button
+          onclick="toggleMenu()"
+          class="md:hidden text-2xl text-[#173b5e]"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div
+          id="menu"
+          class="hidden md:flex flex-col md:flex-row absolute md:static top-full left-0 w-full md:w-auto bg-white md:bg-transparent p-5 md:p-0 gap-6 shadow md:shadow-none"
+        >
+          <a
+            href="#"
+            onclick="mostrarSeccion('inicio')"
+            class="nav-link nav-active font-semibold"
+          >
+            Página de inicio
+          </a>
+
+          <a
+            href="#"
+            onclick="mostrarSeccion('tienda')"
+            class="nav-link font-semibold"
+          >
+            Tienda en línea
+          </a>
+
+          <a
+            href="#"
+            onclick="mostrarSeccion('contacto')"
+            class="nav-link font-semibold"
+          >
+            Página de contacto
+          </a>
+
+          <button
+            onclick="mostrarSeccion('tienda')"
+            class="btn-primary rounded-lg px-5 py-2 font-bold"
+          >
+            Ver servicios
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="pt-20">
+      <!-- ================= INICIO ================= -->
+
+      <section id="inicio" class="section active">
+        <div class="hero text-white">
+          <div
+            class="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center"
+          >
+            <div>
+              <span class="text-[#d6ad60] font-bold uppercase tracking-widest">
+                Servicios jurídicos digitales
+              </span>
+
+              <h2
+                class="text-4xl md:text-6xl font-extrabold mt-5 leading-tight"
+              >
+                Soluciones jurídicas claras,
+                <span class="gold">a un clic.</span>
+              </h2>
+
+              <p class="text-gray-200 mt-6 leading-8 text-lg">
+                En LexExpress Colombia acercamos los servicios jurídicos a
+                ciudadanos y emprendedores mediante herramientas digitales,
+                documentos y orientación inicial.
+              </p>
+
+              <div class="flex flex-wrap gap-4 mt-8">
+                <button
+                  onclick="mostrarSeccion('tienda')"
+                  class="btn-primary px-7 py-4 rounded-xl font-bold"
+                >
+                  Explorar servicios
+                  <i class="fa-solid fa-arrow-right ml-2"></i>
+                </button>
+
+                <button
+                  onclick="abrirModal('dofaModal')"
+                  class="border border-white px-7 py-4 rounded-xl font-bold hover:bg-white hover:text-[#173b5e]"
+                >
+                  Ver Matriz DOFA
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <!-- FOTO PRINCIPAL: puedes cambiar esta URL por una fotografía propia -->
+
+              <img
+                src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=1200&q=85"
+                alt="Servicios jurídicos"
+                class="rounded-3xl shadow-2xl w-full h-96 object-cover"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- PRESENTACIÓN -->
+
+        <div class="max-w-7xl mx-auto px-6 py-20">
+          <div class="text-center max-w-3xl mx-auto">
+            <p class="gold font-bold uppercase tracking-widest">
+              Quiénes somos
+            </p>
+
+            <h2 class="text-3xl md:text-4xl font-extrabold text-[#173b5e] mt-3">
+              Apoyo jurídico práctico y accesible
+            </h2>
+
+            <p class="text-gray-600 mt-5 leading-8">
+              LexExpress Colombia es una propuesta de servicios jurídicos
+              digitales que busca facilitar el acceso inicial a documentos y
+              orientación jurídica, mediante una plataforma sencilla, moderna y
+              accesible.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-8 mt-14">
+            <div class="bg-white rounded-2xl p-8 shadow text-center">
+              <i class="fa-solid fa-file-lines text-4xl text-[#173b5e]"></i>
+              <h3 class="font-bold text-xl mt-5">Documentos jurídicos</h3>
+              <p class="text-gray-600 mt-3">
+                Apoyo en la elaboración de documentos y modelos jurídicos.
+              </p>
+            </div>
+
+            <div class="bg-white rounded-2xl p-8 shadow text-center">
+              <i class="fa-solid fa-bolt text-4xl text-[#173b5e]"></i>
+              <h3 class="font-bold text-xl mt-5">Atención rápida</h3>
+              <p class="text-gray-600 mt-3">
+                Un proceso sencillo para consultar y solicitar servicios.
+              </p>
+            </div>
+
+            <div class="bg-white rounded-2xl p-8 shadow text-center">
+              <i class="fa-solid fa-laptop text-4xl text-[#173b5e]"></i>
+              <h3 class="font-bold text-xl mt-5">Cobertura nacional</h3>
+              <p class="text-gray-600 mt-3">
+                Atención virtual para ciudadanos de toda Colombia.
+              </p>
+            </div>
+          </div>
+
+          <!-- EQUIPO -->
+
+          
+<!-- EQUIPO DE ABOGADOS ESPECIALIZADOS -->
+<section id="equipo" class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="text-center mb-12">
+      <span class="text-blue-700 font-semibold uppercase tracking-wider text-sm">
+        Nuestro equipo
+      </span>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">
+        Abogados especialistas
+      </h2>
+      <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+        Conoce las diferentes áreas del Derecho en las que nuestros
+        especialistas ofrecen orientación y acompañamiento jurídico.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- DERECHO CIVIL -->
+      <article class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition">
+        <img
+          src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f"
+          alt="Especialista en Derecho Civil"
+          class="w-full h-56 object-cover">
+        <div class="p-6">
+          <span class="text-blue-700 text-sm font-semibold">ÁREA JURÍDICA</span>
+          <h3 class="text-xl font-bold text-gray-900 mt-2">Derecho Civil</h3>
+          <p class="text-gray-600 text-sm mt-3">
+            Especialista en contratos, obligaciones, responsabilidad civil,
+            procesos ejecutivos y conflictos patrimoniales.
+          </p>
+          <p class="text-gray-500 text-sm mt-4">
+            <i class="fas fa-user-tie mr-2"></i>
+            ANDRES CASTILLO 
+          </p>
+        </div>
+      </article>
+
+      <!-- DERECHO LABORAL -->
+      <article class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition">
+        <img
+          src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85"
+          alt="Especialista en Derecho Laboral"
+          class="w-full h-56 object-cover">
+        <div class="p-6">
+          <span class="text-blue-700 text-sm font-semibold">ÁREA JURÍDICA</span>
+          <h3 class="text-xl font-bold text-gray-900 mt-2">Derecho Laboral</h3>
+          <p class="text-gray-600 text-sm mt-3">
+            Asesoría en despidos, liquidaciones, prestaciones sociales,
+            pensiones y conflictos entre trabajadores y empleadores.
+          </p>
+          <p class="text-gray-500 text-sm mt-4">
+            <i class="fas fa-user-tie mr-2"></i>
+           ANDRES CASTILLO 
+          </p>
+        </div>
+      </article>
+
+      <!-- DERECHO DE FAMILIA -->
+      <article class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition">
+        <img
+          src="https://images.unsplash.com/photo-1511895426328-dc8714191300"
+          alt="Especialista en Derecho de Familia"
+          class="w-full h-56 object-cover">
+        <div class="p-6">
+          <span class="text-blue-700 text-sm font-semibold">ÁREA JURÍDICA</span>
+          <h3 class="text-xl font-bold text-gray-900 mt-2">Derecho de Familia</h3>
+          <p class="text-gray-600 text-sm mt-3">
+            Acompañamiento en divorcios, custodia, cuota alimentaria,
+            sucesiones y protección de los derechos familiares.
+          </p>
+          <p class="text-gray-500 text-sm mt-4">
+            <i class="fas fa-user-tie mr-2"></i>
+            ANDRES CASTILLO
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+        </div>
+      </section>
+
+      <!-- ================= TIENDA ================= -->
+
+      <section id="tienda" class="section">
+        <div class="bg-[#173b5e] text-white text-center py-16 px-5">
+          <p class="gold uppercase tracking-widest font-bold">
+            Nuestro catálogo
+          </p>
+
+          <h2 class="text-4xl font-extrabold mt-3">Tienda en línea</h2>
+
+          <p class="mt-4 text-gray-200">
+            Encuentra el servicio jurídico que necesitas.
+          </p>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 py-16">
+          <div class="grid md:grid-cols-3 gap-8">
+            <!-- PRODUCTO 1 -->
+
+            <div
+              class="product-card bg-white rounded-2xl shadow overflow-hidden"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=900&q=85"
+                class="h-56 w-full object-cover"
+                alt="Contratos comerciales"
+              />
+
+              <div class="p-7">
+                <span class="text-blue-700 font-bold text-sm">DOCUMENTOS</span>
+
+                <h3 class="text-2xl font-extrabold text-[#173b5e] mt-3">
+                  Kit de Contratos Comerciales
+                </h3>
+
+                <p class="text-gray-600 mt-4">
+                  Modelos base de contratos comerciales editables para
+                  emprendedores y pequeños negocios.
+                </p>
+
+                <p class="text-3xl font-extrabold text-[#173b5e] mt-6">
+                  $89.900 <span class="text-sm">COP</span>
+                </p>
+
+                <button
+                  onclick="comprar('Kit de Contratos Comerciales', 89900)"
+                  class="w-full bg-[#173b5e] text-white rounded-xl py-3 mt-6 font-bold hover:bg-[#24577f]"
+                >
+                  Compra ahora
+                  <i class="fa-solid fa-cart-shopping ml-2"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- PRODUCTO 2 -->
+
+            <div
+              class="product-card bg-white rounded-2xl shadow overflow-hidden"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=900&q=85"
+                class="h-56 w-full object-cover"
+                alt="Derecho de petición"
+              />
+
+              <div class="p-7">
+                <span class="text-amber-700 font-bold text-sm">REDACCIÓN</span>
+
+                <h3 class="text-2xl font-extrabold text-[#173b5e] mt-3">
+                  Redacción de Derecho de Petición
+                </h3>
+
+                <p class="text-gray-600 mt-4">
+                  Elaboración de un borrador de derecho de petición según los
+                  hechos y documentos suministrados.
+                </p>
+
+                <p class="text-3xl font-extrabold text-[#173b5e] mt-6">
+                  $59.900 <span class="text-sm">COP</span>
+                </p>
+
+                <button
+                  onclick="comprar('Redacción de Derecho de Petición', 59900)"
+                  class="w-full bg-[#173b5e] text-white rounded-xl py-3 mt-6 font-bold hover:bg-[#24577f]"
+                >
+                  Compra ahora
+                  <i class="fa-solid fa-cart-shopping ml-2"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- PRODUCTO 3 -->
+
+            <div
+              class="product-card bg-white rounded-2xl shadow overflow-hidden"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=85"
+                class="h-56 w-full object-cover"
+                alt="Consultoría jurídica"
+              />
+
+              <div class="p-7">
+                <span class="text-green-700 font-bold text-sm">ASESORÍA</span>
+
+                <h3 class="text-2xl font-extrabold text-[#173b5e] mt-3">
+                  Consultoría Jurídica Personalizada
+                </h3>
+
+                <p class="text-gray-600 mt-4">
+                  Orientación inicial para revisar inquietudes jurídicas y
+                  explicar posibles rutas de actuación.
+                </p>
+
+                <p class="text-3xl font-extrabold text-[#173b5e] mt-6">
+                  $120.000 <span class="text-sm">COP</span>
+                </p>
+
+                <button
+                  onclick="
+                    comprar('Consultoría Jurídica Personalizada', 120000)
+                  "
+                  class="w-full bg-[#173b5e] text-white rounded-xl py-3 mt-6 font-bold hover:bg-[#24577f]"
+                >
+                  Compra ahora
+                  <i class="fa-solid fa-cart-shopping ml-2"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- MÉTODOS DE PAGO -->
+
+          <div class="mt-20 bg-amber-50 rounded-3xl p-10">
+            <h2 class="text-3xl font-extrabold text-[#173b5e] text-center">
+              Métodos de pago aceptados
+            </h2>
+
+            <p class="text-center text-gray-600 mt-3">
+              Opciones de pago planteadas para el proyecto.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-6 mt-10 text-center">
+              <div class="bg-white rounded-xl p-7 shadow-sm">
+                <i
+                  class="fa-solid fa-mobile-screen-button text-4xl text-pink-600"
+                ></i>
+                <h3 class="font-bold mt-4">Nequi / Daviplata</h3>
+              </div>
+
+              <div class="bg-white rounded-xl p-7 shadow-sm">
+                <i
+                  class="fa-solid fa-building-columns text-4xl text-blue-700"
+                ></i>
+                <h3 class="font-bold mt-4">PSE / Bancolombia</h3>
+              </div>
+
+              <div class="bg-white rounded-xl p-7 shadow-sm">
+                <i
+                  class="fa-regular fa-credit-card text-4xl text-green-700"
+                ></i>
+                <h3 class="font-bold mt-4">Tarjeta débito / crédito</h3>
+              </div>
+            </div>
+
+            <p class="text-xs text-center text-gray-500 mt-6">
+              Los métodos se muestran de forma demostrativa. Esta página no
+              procesa pagos reales.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CONTACTO ================= -->
+
+      <section id="contacto" class="section">
+        <div class="bg-[#173b5e] text-white text-center py-16">
+          <h2 class="text-4xl font-extrabold">Contáctanos</h2>
+
+          <p class="mt-4 text-gray-200">
+            Estamos disponibles para recibir tus solicitudes.
+          </p>
+        </div>
+
+        <div class="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12">
+          <div>
+            <h3 class="text-3xl font-extrabold text-[#173b5e]">
+              Hablemos de tu necesidad jurídica
+            </h3>
+
+            <p class="text-gray-600 mt-5 leading-8">
+              En LexExpress Colombia queremos facilitar tu acceso a servicios
+              jurídicos digitales. Puedes comunicarte con nosotros a través de
+              nuestros canales de atención.
+            </p>
+
+            <div class="mt-10 space-y-7">
+              <div class="flex gap-4 items-center">
+                <i class="fa-regular fa-envelope text-2xl text-[#173b5e]"></i>
+                <div>
+                  <strong>Correo electrónico</strong>
+                  <p class="text-gray-600">andres.castillo@unisimon.edu.co</p>
+                </div>
+              </div>
+
+              <div class="flex gap-4 items-center">
+                <i class="fa-brands fa-whatsapp text-2xl text-green-600"></i>
+                <div>
+                  <strong>WhatsApp</strong>
+                  <p class="text-gray-600">3003553248</p>
+                </div>
+              </div>
+              
+<!-- REDES SOCIALES EN CONTACTO -->
+<div class="mt-10 border-t pt-7">
+
+  <div class="flex gap-5">
+
+    <!-- FACEBOOK -->
+    <a href="https://www.facebook.com/andres.castillo.963977"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Facebook de LexExpress Colombia"
+       class="flex items-center gap-3 bg-blue-50 text-blue-700 px-5 py-3 rounded-xl hover:bg-blue-700 hover:text-white transition">
+
+      <i class="fa-brands fa-facebook-f text-2xl"></i>
+      <span class="font-bold">Facebook</span>
+    </a>
+
+    <!-- INSTAGRAM -->
+    <a href="https://www.instagram.com/castillito_andres/"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Instagram de LexExpress Colombia"
+       class="flex items-center gap-3 bg-pink-50 text-pink-600 px-5 py-3 rounded-xl hover:bg-pink-600 hover:text-white transition">
+
+      <i class="fa-brands fa-instagram text-2xl"></i>
+      <span class="font-bold">Instagram</span>
+
+    </a>
+
+  </div>
+</div>
+  
+
+              <div class="flex gap-4 items-center">
+                <i class="fa-solid fa-location-dot text-2xl text-[#173b5e]"></i>
+                <div>
+                  <strong>Cobertura</strong>
+                  <p class="text-gray-600">Atención virtual en Colombia</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FORMULARIO -->
+
+          <div class="bg-white p-8 rounded-2xl shadow-lg">
+            <h3 class="text-2xl font-bold text-[#173b5e]">
+              Envíanos un mensaje
+            </h3>
+
+            <form id="contactForm" class="mt-7 space-y-5">
+              <div>
+                <label class="block font-semibold mb-2">Nombre completo</label>
+                <input
+                  type="text"
+                  id="contactNombre"
+                  required
+                  class="w-full border rounded-lg p-3"
+                  placeholder="Tu nombre"
+                />
+              </div>
+
+              <div>
+                <label class="block font-semibold mb-2"
+                  >Correo electrónico</label
+                >
+                <input
+                  type="email"
+                  id="contactCorreo"
+                  required
+                  class="w-full border rounded-lg p-3"
+                  placeholder="correo@ejemplo.com"
+                />
+              </div>
+
+              <div>
+                <label class="block font-semibold mb-2">Asunto</label>
+                <input
+                  type="text"
+                  required
+                  class="w-full border rounded-lg p-3"
+                  placeholder="Motivo de tu consulta"
+                />
+              </div>
+
+              <div>
+                <label class="block font-semibold mb-2">Mensaje</label>
+                <textarea
+                  id="contactMensaje"
+                  required
+                  rows="5"
+                  class="w-full border rounded-lg p-3"
+                  placeholder="Escribe tu mensaje"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="btn-primary w-full py-4 rounded-lg font-bold"
+              >
+                Enviar mensaje
+                <i class="fa-solid fa-paper-plane ml-2"></i>
+              </button>
+
+              <p
+                id="contactConfirmacion"
+                class="hidden bg-green-100 text-green-800 p-4 rounded-lg"
+              >
+                <i class="fa-solid fa-circle-check mr-2"></i>
+                Mensaje registrado en esta demostración.
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= PIE DE PÁGINA ================= -->
+
+    <footer class="bg-[#102b46] text-white text-center py-10">
+      <h2 class="text-2xl font-extrabold">
+        LexExpress <span class="gold">Colombia</span>
+      </h2>
+
+      <p class="mt-3 text-gray-300">
+        Servicios jurídicos digitales para todos.
+      </p>
+
+      <p class="text-gray-400 text-sm mt-5">
+        © <span id="year"></span> LexExpress Colombia. Proyecto académico.
+      </p>
+
+      <p class="text-gray-400 text-xs mt-3 px-5">
+        Este prototipo no sustituye la asesoría profesional ni constituye por sí
+        mismo una relación abogado-cliente.
+      </p>
+      
+<!-- REDES SOCIALES -->
+<div class="flex justify-center items-center gap-6 mt-7">
+
+  <!-- FACEBOOK -->
+  <a href="https://www.facebook.com/andres.castillo.963977"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="Facebook de LexExpress Colombia"
+     class="bg-white text-blue-700 w-12 h-12 rounded-full flex items-center justify-center text-2xl hover:bg-[#d6ad60] hover:text-white transition">
+    <i class="fa-brands fa-facebook-f"></i>
+  </a>
+
+  <!-- INSTAGRAM -->
+  <a href="https://www.instagram.com/castillito_andres/"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="Instagram de LexExpress Colombia"
+     class="bg-white text-pink-600 w-12 h-12 rounded-full flex items-center justify-center text-2xl hover:bg-[#d6ad60] hover:text-white transition">
+    <i class="fa-brands fa-instagram"></i>
+  </a>
+
+</div>
+
+<p class="text-gray-300 text-sm mt-4">
+  Síguenos en nuestras redes sociales
+</p>
+
+    </footer>
+
+    <!-- ================= MODAL DOFA ================= -->
+
+    <div id="dofaModal" class="modal">
+      <div
+        class="bg-white rounded-2xl p-7 max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+      >
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-3xl font-extrabold text-[#173b5e]">Matriz DOFA</h2>
+
+          <button onclick="cerrarModal('dofaModal')" class="text-2xl">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-5">
+          <div class="bg-green-50 border border-green-200 rounded-xl p-6">
+            <h3 class="text-xl font-bold text-green-800">Fortalezas</h3>
+            <ul class="list-disc ml-5 mt-4 space-y-2">
+              <li>Atención virtual con cobertura nacional.</li>
+              <li>Catálogo de servicios fácil de consultar.</li>
+              <li>Proceso digital sencillo.</li>
+            </ul>
+          </div>
+
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-6">
+            <h3 class="text-xl font-bold text-amber-800">Debilidades</h3>
+            <ul class="list-disc ml-5 mt-4 space-y-2">
+              <li>Marca nueva en el mercado.</li>
+              <li>Sin integración de pagos reales.</li>
+              <li>Necesidad de profesionales disponibles.</li>
+            </ul>
+          </div>
+
+          <div class="bg-blue-50 border border-blue-200 rounded-xl p-6">
+            <h3 class="text-xl font-bold text-blue-800">Oportunidades</h3>
+            <ul class="list-disc ml-5 mt-4 space-y-2">
+              <li>Crecimiento de los servicios digitales.</li>
+              <li>Alianzas con emprendedores.</li>
+              <li>Ampliación del catálogo jurídico.</li>
+            </ul>
+          </div>
+
+          <div class="bg-red-50 border border-red-200 rounded-xl p-6">
+            <h3 class="text-xl font-bold text-red-800">Amenazas</h3>
+            <ul class="list-disc ml-5 mt-4 space-y-2">
+              <li>Competencia de otras plataformas.</li>
+              <li>Riesgos de seguridad digital.</li>
+              <li>Cambios en las normas jurídicas.</li>
+            </ul>
+          </div>
+        </div>
+
+        <button
+          onclick="cerrarModal('dofaModal')"
+          class="btn-primary w-full py-3 rounded-lg mt-7 font-bold"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+
+    <!-- ================= MODAL COMPRA ================= -->
+
+    <div id="compraModal" class="modal">
+      <div
+        class="bg-white rounded-2xl p-7 max-w-lg w-full max-h-[90vh] overflow-y-auto"
+      >
+        <div class="flex justify-between items-center">
+          <h2 class="text-2xl font-extrabold text-[#173b5e]">
+            Solicitud de compra
+          </h2>
+
+          <button onclick="cerrarModal('compraModal')" class="text-2xl">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <div class="bg-slate-100 rounded-xl p-5 mt-6">
+          <p class="text-gray-500 text-sm">Servicio seleccionado</p>
+
+          <h3 id="productoSeleccionado" class="font-bold text-xl mt-2"></h3>
+
+          <p
+            id="precioSeleccionado"
+            class="text-2xl font-extrabold text-[#173b5e] mt-2"
+          ></p>
+        </div>
+
+        <form id="compraForm" class="space-y-5 mt-6">
+          <div>
+            <label class="font-semibold block mb-2">Nombre completo</label>
+            <input
+              type="text"
+              id="nombreCliente"
+              required
+              class="w-full border rounded-lg p-3"
+              placeholder="Nombre y apellido"
+            />
+          </div>
+
+          <div>
+            <label class="font-semibold block mb-2">Correo electrónico</label>
+            <input
+              type="email"
+              id="correoCliente"
+              required
+              class="w-full border rounded-lg p-3"
+              placeholder="correo@ejemplo.com"
+            />
+          </div>
+
+          <div>
+            <label class="font-semibold block mb-2">Método de pago</label>
+
+            <select
+              id="metodoPago"
+              required
+              class="w-full border rounded-lg p-3"
+            >
+              <option value="">Seleccionar método</option>
+              <option>Nequi / Daviplata</option>
+              <option>PSE / Bancolombia</option>
+              <option>Tarjeta débito / crédito</option>
+            </select>
+          </div>
+
+          <button
+            type="submit"
+            class="btn-primary w-full py-4 rounded-lg font-bold"
+          >
+            Confirmar solicitud
+          </button>
+
+          <p class="text-xs text-gray-500">
+            Esta es una simulación académica. No se realizará ningún cobro.
+          </p>
+        </form>
+
+        <div
+          id="confirmacionCompra"
+          class="hidden bg-green-100 text-green-800 rounded-xl p-5 mt-6"
+        >
+          <h3 class="font-bold text-xl">
+            <i class="fa-solid fa-circle-check mr-2"></i>
+            ¡Pedido registrado!
+          </h3>
+
+          <p id="resumenCompra" class="mt-3 text-sm leading-6"></p>
+
+          <button
+            onclick="cerrarModal('compraModal')"
+            class="bg-green-700 text-white px-5 py-3 rounded-lg mt-5 font-bold"
+          >
+            Finalizar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+      // NAVEGACIÓN ENTRE SECCIONES
+
+      function mostrarSeccion(nombre) {
+        document.querySelectorAll(".section").forEach((s) => {
+          s.classList.remove("active");
+        });
+
+        document.getElementById(nombre).classList.add("active");
+
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.classList.remove("nav-active");
+        });
+
+        const enlaces = document.querySelectorAll(".nav-link");
+
+        enlaces.forEach((link) => {
+          if (link.getAttribute("href") === "#" + nombre) {
+            link.classList.add("nav-active");
+          }
+        });
+
+        document.getElementById("menu").classList.add("hidden");
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // MENÚ MÓVIL
+
+      function toggleMenu() {
+        document.getElementById("menu").classList.toggle("hidden");
+      }
+
+      // ABRIR MODALES
+
+      function abrirModal(id) {
+        document.getElementById(id).classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      // CERRAR MODALES
+
+      function cerrarModal(id) {
+        document.getElementById(id).classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      // FORMATO DE DINERO COLOMBIANO
+
+      function formatoCOP(valor) {
+        return new Intl.NumberFormat("es-CO", {
+          style: "currency",
+          currency: "COP",
+          maximumFractionDigits: 0,
+        }).format(valor);
+      }
+
+      // VARIABLES DE COMPRA
+
+      let productoActual = "";
+      let precioActual = 0;
+
+      // SELECCIONAR PRODUCTO
+
+      function comprar(nombre, precio) {
+        productoActual = nombre;
+        precioActual = precio;
+
+        document.getElementById("productoSeleccionado").textContent = nombre;
+
+        document.getElementById("precioSeleccionado").textContent =
+          formatoCOP(precio);
+
+        document.getElementById("compraForm").reset();
+
+        document.getElementById("compraForm").classList.remove("hidden");
+
+        document.getElementById("confirmacionCompra").classList.add("hidden");
+
+        abrirModal("compraModal");
+      }
+
+      // FORMULARIO DE COMPRA
+
+      document
+        .getElementById("compraForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          if (!this.reportValidity()) return;
+
+          const nombre = document.getElementById("nombreCliente").value.trim();
+          const correo = document.getElementById("correoCliente").value.trim();
+          const metodo = document.getElementById("metodoPago").value;
+
+          document.getElementById("resumenCompra").textContent =
+            "Gracias " +
+            nombre +
+            ". Tu solicitud para " +
+            productoActual +
+            " por " +
+            formatoCOP(precioActual) +
+            " fue registrada. Método seleccionado: " +
+            metodo +
+            ". Correo de contacto: " +
+            correo +
+            ". Esta confirmación es demostrativa y no representa un pago realizado.";
+
+          document.getElementById("compraForm").classList.add("hidden");
+
+          document
+            .getElementById("confirmacionCompra")
+            .classList.remove("hidden");
+        });
+
+      // FORMULARIO DE CONTACTO
+
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          if (!this.reportValidity()) return;
+
+          document
+            .getElementById("contactConfirmacion")
+            .classList.remove("hidden");
+
+          this.reset();
+        });
+
+      // CERRAR MODAL AL HACER CLIC FUERA
+
+      document.querySelectorAll(".modal").forEach((modal) => {
+        modal.addEventListener("click", function (e) {
+          if (e.target === this) {
+            this.classList.remove("active");
+            document.body.style.overflow = "";
+          }
+        });
+      });
+
+      // CERRAR CON ESCAPE
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          document.querySelectorAll(".modal").forEach((modal) => {
+            modal.classList.remove("active");
+          });
+
+          document.body.style.overflow = "";
+        }
+      });
+
+      // AÑO AUTOMÁTICO
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
